@@ -1,4 +1,4 @@
-from wsgi import db
+from app.constants import db
 from sqlalchemy import func
 
 
@@ -15,7 +15,7 @@ class User(db.Model):
 
 class Project(db.Model):
     proj_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     name = db.Column(db.String)
     description = db.Column(db.String)
     link = db.Column(db.String)
@@ -26,5 +26,4 @@ class Technology(db.Model):
     tech_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     purpose = db.Column(db.String)
-    project_id = db.Column(db.Integer, db.ForeignKey('project.proj_id'))
-
+    project_id = db.Column(db.Integer, db.ForeignKey("project.proj_id"))
