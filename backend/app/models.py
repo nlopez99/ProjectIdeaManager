@@ -3,7 +3,7 @@ from sqlalchemy import func
 
 
 class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, primary_key=True)
     first_name = db.Column(db.String)
     last_name = db.Column(db.String)
     handle = db.Column(db.String)
@@ -15,7 +15,7 @@ class User(db.Model):
 
 class Project(db.Model):
     proj_id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    user_id = db.Column(db.Integer, db.ForeignKey("user.user_id"))
     name = db.Column(db.String)
     description = db.Column(db.String)
     link = db.Column(db.String)

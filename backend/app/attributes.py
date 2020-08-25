@@ -11,7 +11,7 @@ class ProjectInput(InputObjectType):
 
 
 class UserInput(InputObjectType):
-    id = Int()
+    user_id = Int()
     first_name = String()
     last_name = String()
     handle = String()
