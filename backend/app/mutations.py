@@ -167,6 +167,53 @@ class DeleteProject(Mutation):
         return DeleteProject(project=project)
 
 
+class AddTechnologyToProject(Mutation):
+    project = graphene.Field(lambda: ProjectObjectType)
+    class Arguments:
+        proj_id = graphene.Int(required=True)
+        tech_id = graphene.Int(required=True)
+
+        
+    def mutate(self, info, proj_id, tech_id):
+        project = Project.query.filter_by(proj_id=proj_id).first()
+        tech = Technology.query.filter_by(tech_id=tech_id).first()
+
+        try:
+            project.technologies.append(tech)
+            save_changes(project)
+
+        except SQLAlchemyError as e:
+            print(str(e))
+            print(info.path)
+            db.session.rollback()
+
+        return AddTechnologyToProject(project=project)
+
+
+class RemoveTechnologyFromProject(Mutation):
+    project = graphene.Field(lambda: ProjectObjectType)
+    class Arguments:
+        proj_id = graphene.Int(required=True)
+        tech_id = graphene.Int(required=True)
+
+        
+    def mutate(self, info, proj_id, tech_id):
+        project = Project.query.filter_by(proj_id=proj_id).first()
+        tech = Technology.query.filter_by(tech_id=tech_id).first()
+
+        try:
+            project.technologies.remove(tech)
+            save_changes(project)
+
+        except SQLAlchemyError as e:
+            print(str(e))
+            print(info.path)
+            db.session.rollback()
+
+        return RemoveTechnologyFromProject(project=project)
+
+
+
 class Mutation(graphene.ObjectType):
     create_user = CreateUser.Field()
     update_user = UpdateUser.Field()
@@ -174,3 +221,5 @@ class Mutation(graphene.ObjectType):
     create_project = CreateProject.Field()
     update_project = UpdateProject.Field()
     delete_project = DeleteProject.Field()
+    add_technology_to_project = AddTechnologyToProject.Field()
+    remove_technology_from_project = RemoveTechnologyFromProject.Field()

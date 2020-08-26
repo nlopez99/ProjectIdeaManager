@@ -1,6 +1,7 @@
-from app.constants import db
 from sqlalchemy import func
+from app.constants import db
 
+# Non-static tables
 
 class User(db.Model):
     user_id = db.Column(db.Integer, primary_key=True)
@@ -19,11 +20,22 @@ class Project(db.Model):
     name = db.Column(db.String)
     description = db.Column(db.String)
     link = db.Column(db.String)
-    technologies = db.relationship("Technology", backref="project")
+    technologies = db.relationship(
+        "Technology", secondary=lambda: project_technologies, backref="proj_id",
+    )
 
 
 class Technology(db.Model):
     tech_id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String)
     purpose = db.Column(db.String)
-    project_id = db.Column(db.Integer, db.ForeignKey("project.proj_id"))
+    project = db.Column(db.Integer, db.ForeignKey("project.proj_id"))
+
+
+# Static Tables
+project_technologies = db.Table(
+    'project_technologies',
+    db.Column("tech_id", db.Integer, db.ForeignKey("technology.tech_id")),
+    db.Column("proj_id", db.Integer, db.ForeignKey("project.proj_id")),
+    db.Index("project_technology", "tech_id", "proj_id", unique=True)
+)
