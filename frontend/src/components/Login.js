@@ -1,12 +1,7 @@
-import React, { Component } from "react";
-import MuiThemeProvider from "material-ui/styles/MuiThemeProvider";
-import AppBar from "material-ui/AppBar";
-import RaisedButton from "material-ui/RaisedButton";
-import TextField from "material-ui/TextField";
+import React from "react";
+import 'antd/dist/antd.css';
 import "./Login.css";
-
-
-import { Form, Input, Button, Checkbox } from "antd";
+import { Form, Input, Button, Checkbox, Card } from "antd";
 
 const layout = {
   labelCol: { span: 8 },
@@ -26,50 +21,54 @@ export const Login = () => {
   };
 
   return (
-    <Form
-      {...layout}
-      name="basic"
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-    >
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
-        ]}
-      >
-        <Input />
-      </Form.Item>
+    <Card className="login-card" style={{ height: 500 }}>
+      <div className="login-form">
+        <Form
+          {...layout}
+          name="basic"
+          initialValues={{
+            remember: true,
+          }}
+          onFinish={onFinish}
+          onFinishFailed={onFinishFailed}
+        >
+          <Form.Item
+            label="Username"
+            name="username"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your username!',
+              },
+            ]}
+          >
+            <Input />
+          </Form.Item>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+          <Form.Item
+            label="Password"
+            name="password"
+            rules={[
+              {
+                required: true,
+                message: 'Please input your password!',
+              },
+            ]}
+          >
+            <Input.Password />
+          </Form.Item>
 
-      <Form.Item {...tailLayout} name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
-      </Form.Item>
+          <Form.Item {...tailLayout} name="remember" valuePropName="checked">
+            <Checkbox>Remember me</Checkbox>
+          </Form.Item>
 
-      <Form.Item {...tailLayout}>
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
+          <Form.Item {...tailLayout}>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </div>
+    </Card>
   );
 };

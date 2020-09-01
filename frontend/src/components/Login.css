@@ -1,7 +1,7 @@
-#login {
+/* #login {
   flex: content;
   align-items: center;
-}
+} */
 
 
 @media all and (min-width: 480px) {
@@ -15,4 +15,15 @@
     }
   }
 
+
+  .login-card {
+    margin-top: 125px;
+    max-width: 33vw;
+    margin-left: 33vw;
+  }
+
+  .login-form {
+    margin-top: 125px;
+    margin-right: 175px;
+  }
 
