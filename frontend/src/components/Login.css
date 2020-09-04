@@ -23,7 +23,16 @@
   }
 
   .login-form {
-    margin-top: 125px;
-    margin-right: 175px;
+    margin-right: 300px;
+    padding-right: 175px;
+    width: 33vw;
   }
+
+
+  .login-logo { 
+    display: flex;
+    height: 150px;
+    width: 150px;
+    margin-left: 10vw;
+}
 

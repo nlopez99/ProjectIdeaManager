@@ -2,6 +2,8 @@ import React from "react";
 import 'antd/dist/antd.css';
 import "./Login.css";
 import { Form, Input, Button, Checkbox, Card } from "antd";
+import logo from "../logo.png";
+
 
 const layout = {
   labelCol: { span: 8 },
@@ -22,6 +24,7 @@ export const Login = () => {
 
   return (
     <Card className="login-card" style={{ height: 500 }}>
+      <img src={logo} alt="Logo" className="login-logo"/>
       <div className="login-form">
         <Form
           {...layout}
