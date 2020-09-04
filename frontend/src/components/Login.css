@@ -4,18 +4,6 @@
 } */
 
 
-@media all and (min-width: 480px) {
-    .Login {
-      padding: 60px 0;
-    }
-  
-    .Login form {
-      margin: 0 auto;
-      max-width: 320px;
-    }
-  }
-
-
   .login-card {
     margin-top: 125px;
     max-width: 33vw;
@@ -33,6 +21,6 @@
     display: flex;
     height: 150px;
     width: 150px;
-    margin-left: 10vw;
+    margin-left: 14vw;
 }
 

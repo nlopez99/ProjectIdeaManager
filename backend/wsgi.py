@@ -1,7 +1,5 @@
-from app.server import create_app
+from app.server import application
 
-
-app = create_app()
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    application.run(debug=True)
