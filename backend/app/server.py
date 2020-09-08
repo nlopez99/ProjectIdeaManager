@@ -21,15 +21,13 @@ jwt = JWTManager(application)
 CORS(application)
 
 
+@application.route("/login", methods=["GET", "POST"])
 def register():
     print("Hello World!")
     return jsonify({"requests": "something"})
      
 
 
-application.add_url_rule(
-    "/", view_func=GraphQLView.as_view("graphql", schema=schema, graphiql=True),
-)
-application.add_url_rule(
-    "/users/register", view_func=register 
-)
+# application.add_url_rule(
+#     "/", view_func=GraphQLView.as_view("graphql", schema=schema, graphiql=True),
+# )
